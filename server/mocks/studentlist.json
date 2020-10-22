@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "msg": "User Detail",
+  "data": [{
+    "UserID": 1,
+    "Name": "Dummy User 1",
+    "MobileNo": "1234567890",
+    "BirthDate": "01-01-1990",
+    "EmailID": "testuser1@gmail.com"
+  }, {
+    "UserID": 2,
+    "Name": "Dummy User 2",
+    "MobileNo": "1234567890",
+    "BirthDate": "01-01-1991",
+    "EmailID": "testuser2@gmail.com"
+  }, {
+    "UserID": 3,
+    "Name": "Dummy User 3",
+    "MobileNo": "1234567890",
+    "BirthDate": "01-01-1993",
+    "EmailID": "testuesr3@gmail.com"
+  }]
+}

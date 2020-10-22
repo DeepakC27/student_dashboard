@@ -1,0 +1,16 @@
+.btn {
+  padding: 1rem .8rem;
+  min-width: 150px;
+  font-size: 18px;
+  outline: none;
+  border: none;
+}
+
+.primary-btn {
+  background-color: var(--primary-color);
+  color: var(--white) !important;
+}
+
+.secondary-btn {
+  background-color: var(--light-grey);
+}

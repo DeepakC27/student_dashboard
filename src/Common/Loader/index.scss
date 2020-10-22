@@ -1,0 +1,37 @@
+.loader {
+  min-height: 150px;
+  height: 100%;
+  display: flex;
+  grid-gap: .5rem;
+  justify-content: center;
+  align-items: center;
+  div {
+    height: 7px;
+    width: 7px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    margin-top: .5rem;
+  }
+
+  @keyframes loaderdot-animation {
+    0% {
+      opacity: 0;
+    }
+    80% {
+      opacity: .5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .loader-dot-1 {
+    animation: loaderdot-animation .5s infinite ease-in-out;
+  }
+  .loader-dot-2 {
+    animation: loaderdot-animation .8s infinite ease-in-out;
+  }
+  .loader-dot-3 {
+    animation: loaderdot-animation 1s infinite ease-in-out;
+  }
+}
