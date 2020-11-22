@@ -1,0 +1,35 @@
+nav {
+  padding: var(--body-spacing);
+  background-color: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    grid-gap: 2rem;
+  }
+  ul li:nth-child(2) {
+    margin-left: auto;
+  }
+
+  .loggedin-user-info {
+    border: 1px solid var(--secondary-color);
+    padding: .5rem;
+    border-radius: 5rem;
+    display: flex;
+    align-items: center;
+    grid-gap: 1rem;
+  }
+
+  @media screen and (max-width: var(--mb-size)) {
+    ul li:nth-child(n + 2) {
+      display: none;
+    }
+  }
+}
