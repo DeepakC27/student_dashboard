@@ -3,6 +3,7 @@ import Card from './Card'
 import * as Icons from './Icons'
 import Loader from './Loader'
 import ProgressBar from './ProgessBar'
+import Graphs from './Graphs'
 
 const BellIcon = Icons.BellIcon
 const AdminIcon = Icons.AdminIcon
@@ -15,5 +16,6 @@ export {
   ProgressBar,
   BellIcon,
   AdminIcon,
-  UserIcon
+  UserIcon,
+  Graphs
 }
