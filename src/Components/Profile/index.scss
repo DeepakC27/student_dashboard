@@ -1,0 +1,11 @@
+.student-profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: initial;
+  border-radius: .5rem;
+  grid-gap: 1rem;
+  > div {
+    min-width: 180px;
+  }
+}
