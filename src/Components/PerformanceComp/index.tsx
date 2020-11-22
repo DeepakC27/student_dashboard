@@ -44,29 +44,31 @@ interface SubjectProps {
 }
 const SubjectCard: React.FC<SubjectProps> = ({ idx, subjectName, mark }) => {
   const [subjectMark, setMark] = useState(mark)
+  const [renderingStatus, setRenderingStatus] = useState(false)
   const elementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (elementRef.current) {
-      const callBack = () => console.log(`${mark} into view`)
+    if (elementRef.current && mark && !renderingStatus) {
+      const callBack = () => setRenderingStatus(true)
       setObserver(elementRef.current, callBack)
     }
-  }, [elementRef, mark])
+  }, [elementRef, mark, renderingStatus])
 
   useEffect(() => {
-    const renderMark = setTimeout(() => {
-      if (mark === subjectMark) {
-        clearTimeout(renderMark)
-      } else {
-        let test = subjectMark
-        test++
-        setMark(test)
-      }
-    }, 5)
-
-    return () => clearTimeout(renderMark)
-  }, [mark, subjectMark])
-
+    if (renderingStatus) {
+      const renderMark = setInterval(() => {
+        if (mark === subjectMark) {
+          clearTimeout(renderMark)
+        } else {
+          let test = subjectMark
+          test++
+          setMark(test)
+        }
+      }, 5)
+      return () => clearInterval(renderMark)  
+    }
+  }, [mark, renderingStatus, subjectMark])
+  
   return (
     <Card key={idx}>
       <div className='field-label'>{subjectName}</div>
