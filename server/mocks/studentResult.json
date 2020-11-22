@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "msg": "students subjective performance results",
+  "data": [{
+    "SubjectID": 1,
+    "SubjectName": "English",
+    "Marks": {
+      "Theory": { "Total": 100, "MarksObtained": 85 }
+    }
+  }, {
+    "SubjectID": 2,
+    "SubjectName": "Maths",
+    "Marks": {
+      "Theory": { "Total": 100, "MarksObtained": 92 }
+    }
+  }, {
+    "SubjectID": 3,
+    "SubjectName": "Physics",
+    "Marks": {
+      "Theory": { "Total": 100, "MarksObtained": 45 },
+      "Practical": { "Total": 30, "MarksObtained": 15 }
+    }
+  }, {
+    "SubjectID": 4,
+    "SubjectName": "Chemistry",
+    "Marks": {
+      "Theory": { "Total": 100, "MarksObtained": 80 },
+      "Practical": { "Total": 30, "MarksObtained": 20 }
+    }
+  }, {
+    "SubjectID": 4,
+    "SubjectName": "Informative Practices",
+    "Marks": {
+      "Theory": { "Total": 100, "MarksObtained": 95 },
+      "Practical": { "Total": 30, "MarksObtained": 25 }
+    }
+  }]
+}
