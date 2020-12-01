@@ -21,7 +21,7 @@ const graphStyles = {
   }
 }
 
-interface GraphProps {
+interface IGraphProps {
   title?: string,
   dataPoints: object,
   type: string,
@@ -30,7 +30,7 @@ interface GraphProps {
   toolTip?: object
 }
 
-const Graphs: React.FC<GraphProps> = ({ title, dataPoints, type, axisX, axisY, toolTip }) => {
+const Graphs: React.FC<IGraphProps> = ({ title, dataPoints, type, axisX, axisY, toolTip }) => {
   const options = {
     theme: '',
     zoomEnabled: true, 

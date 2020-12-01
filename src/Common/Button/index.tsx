@@ -1,12 +1,12 @@
 import React from 'react'
 import './index.scss'
 
-interface ButtonProps {
+interface IButtonProps {
   className?: string,
   children: any
 }
 
-const Button: React.FC<ButtonProps> = ({ className, children }) => {
+const Button: React.FC<IButtonProps> = ({ className, children }) => {
   return (
     <button className={'btn ' + (className || '')}>
       {children}

@@ -1,6 +1,6 @@
 import axios from './apiInstance'
 
-interface Response {
+interface IApiResponse {
   status: number,
   data: {
     success: boolean,
@@ -12,7 +12,7 @@ interface Response {
 const getRequestAsync = (uri: string, body: object) => {
   return axios.get(uri, body).catch((err: object) => {
     throw err
-  }).then((response: Response) => {
+  }).then((response: IApiResponse) => {
     if (response.status === 200 && response.data.success) {
       return response.data.data
     } else {
@@ -25,7 +25,7 @@ const getRequestAsync = (uri: string, body: object) => {
 const postRequestAsync = (uri: string, body: object) => {
   return axios.post(uri, body).catch((err: object) => {
     throw err
-  }).then((response: Response) => {
+  }).then((response: IApiResponse) => {
     if (response.status === 200 && response.data.success) {
       return response.data.data
     } else {

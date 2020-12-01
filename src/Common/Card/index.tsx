@@ -1,12 +1,12 @@
 import React from 'react'
 import './index.scss'
 
-interface Props {
+interface ICardProps {
   className?: string,
   children: any
 }
 
-const Card: React.FC<Props> = ({ className, children }) => {
+const Card: React.FC<ICardProps> = ({ className, children }) => {
   return (
     <div className={'card-style ' + (className || '')}>
       {children}
