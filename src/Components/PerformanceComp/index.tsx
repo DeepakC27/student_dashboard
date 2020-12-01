@@ -1,17 +1,55 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { ProgressBar, Loader, Card } from '../../Common'
-import setObserver from '../../Utils/IntersectionObserver'
+import React, { useEffect, useState } from 'react'
+import { postRequestAsync } from '../../Api'
+import { Loader, Card } from '../../Common'
 import './index.scss'
+import SubjectCard from './SubjectCard'
 
+interface IMakrs {
+  Theory: {
+    Total: number,
+    MarksObtained: number
+  }
+  Practical?: {
+    Total: number,
+    MarksObtained: number
+  }
+}
+
+interface IRespItems {
+  SubjectID: number,
+  SubjectName: string,
+  Marks: IMakrs
+}
 
 const PerformanceComp: React.FC = () => {
-  const [subjectsList] = useState(['English', 'Maths', 'Physics', 'Chemistry', 'History'])
-  const [marksList, setMarksList] = useState([0, 0, 0, 0, 0])
+  const [subjectsList, setSubjectsList] = useState<Array<string>>([])
+  const [marksList, setMarksList] = useState<Array<IMakrs>>([])
 
   useEffect(() => {
-    if (marksList[0] === 0) {
-      const updateMarks = setTimeout(() => { setMarksList([65, 85, 45, 70, 30]) }, 1000)
-      return () => clearTimeout(updateMarks)
+    if (marksList.length === 0) {
+      const getStudentList = async () => {
+        let response: any = await postRequestAsync('/getStudentResult', {})
+        try {
+          const subjects: Array<string> = [], marks: Array<IMakrs> = []
+          response.map((item:IRespItems): object => {
+            subjects.push(item.SubjectName)
+            marks.push(item.Marks)
+            // let marksObt = (item.Marks?.Theory?.MarksObtained || 0) +
+            //   (item.Marks?.Practical?.MarksObtained || 0)
+            // let totalMarks = (item.Marks?.Theory?.Total || 0) +
+            // (item.Marks?.Practical?.Total || 0)
+            return item
+          })
+          setSubjectsList(subjects)
+          setMarksList(marks)
+          console.log(marks)
+          
+        }
+        catch (err) {
+          console.log(err)
+        }
+      }
+      getStudentList()
     }
   }, [marksList])
 
@@ -29,66 +67,14 @@ const PerformanceComp: React.FC = () => {
     {/* <div className='custom-progress-bar' /> */}
     <div className='analytics-section-2'>
       <div className='subjective-analytics'>
-        {subjectsList.length && subjectsList.map((subjectName: string, idx: number) =>
-          <SubjectCard key={idx} idx={idx} subjectName={subjectName} mark={marksList[idx]} />
+        {subjectsList.length && marksList.length &&
+          subjectsList.map((subjectName: string, idx: number) =>
+          <SubjectCard key={idx} idx={idx} subjectName={subjectName}
+            markInfo={marksList[idx]} />
         )}
       </div>
     </div>
   </Card>
-}
-
-interface SubjectProps {
-  idx: number,
-  subjectName: string,
-  mark: number
-}
-const SubjectCard: React.FC<SubjectProps> = ({ idx, subjectName, mark }) => {
-  const [subjectMark, setMark] = useState(mark)
-  const [renderingStatus, setRenderingStatus] = useState(false)
-  const elementRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (elementRef.current && mark && !renderingStatus) {
-      const callBack = () => setRenderingStatus(true)
-      setObserver(elementRef.current, callBack)
-    }
-  }, [elementRef, mark, renderingStatus])
-
-  useEffect(() => {
-    if (renderingStatus) {
-      const renderMark = setInterval(() => {
-        if (mark === subjectMark) {
-          clearTimeout(renderMark)
-        } else {
-          let test = subjectMark
-          test++
-          setMark(test)
-        }
-      }, 5)
-      return () => clearInterval(renderMark)  
-    }
-  }, [mark, renderingStatus, subjectMark])
-  
-  return (
-    <Card key={idx}>
-      <div className='field-label'>{subjectName}</div>
-      <div ref={elementRef}>
-        <div className='progress-bar-wrapper'>
-          <span>
-            <b>{subjectMark}</b>
-            &nbsp;/&nbsp;100</span>
-          <ProgressBar width={5} percent={subjectMark} />
-        </div>
-        <div className=''>
-          <p>
-            Theoratical: 45
-            <br/>
-            Practical: 15
-          </p>
-        </div>
-      </div>
-    </Card>
-  )
 }
 
 export default React.memo(PerformanceComp)
