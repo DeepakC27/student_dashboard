@@ -1,6 +1,4 @@
 const setObserver = (element: HTMLElement, callBack: Function, observerOptions: object = {}) => {
-  console.log('setting observer')
-  
   const options = {
     // rootMargin: '-50% 0% -50% 0%',
     threshold: 1.0,
